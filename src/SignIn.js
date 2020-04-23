@@ -1,13 +1,15 @@
 import React from "react";
 import CallApi from "./api";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import {
+  Container,
+  Button,
+  CssBaseline,
+  TextField,
+  Link,
+  Box,
+  Typography,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,27 +41,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const signIn = async () => {
-    let auth = await CallApi.post("/auth", {
-      body: {
-        login: "test@test.ru",
-        password: "test",
-        type: "web",
-      },
-    });
-    if (auth.success) {
-      let accessToken = await auth.data.accessToken;
-      localStorage.setItem("accessToken", `${accessToken}`);
-    } else {
-      throw new Error(auth.errors[0]);
-    }
-  };
+  let auth = await CallApi.post("/auth", {
+    body: {
+      login: "test@test.ru",
+      password: "test",
+      type: "web",
+    },
+  });
+  if (auth.success) {
+    let accessToken = await auth.data.accessToken;
+    localStorage.setItem("accessToken", `${accessToken}`);
+  } else {
+    throw new Error(auth.errors[0]);
+  }
+};
 
 export default function SignIn() {
-
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
