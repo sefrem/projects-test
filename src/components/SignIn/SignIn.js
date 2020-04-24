@@ -1,15 +1,16 @@
 import React from "react";
-import CallApi from "./api";
 import {
   Container,
   Button,
   CssBaseline,
   TextField,
-  Link,
   Box,
   Typography,
+  FormHelperText,
 } from "@material-ui/core";
+import Copyright from "./Copyright/Copyright";
 import { makeStyles } from "@material-ui/core/styles";
+import useForm from "../../utils/useForm";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,24 +41,10 @@ const useStyles = makeStyles((theme) => ({
   disabled: {},
 }));
 
-const signIn = async () => {
-  let auth = await CallApi.post("/auth", {
-    body: {
-      login: "test@test.ru",
-      password: "test",
-      type: "web",
-    },
-  });
-  if (auth.success) {
-    let accessToken = await auth.data.accessToken;
-    localStorage.setItem("accessToken", `${accessToken}`);
-  } else {
-    throw new Error(auth.errors[0]);
-  }
-};
-
 export default function SignIn() {
   const classes = useStyles();
+
+  const { values, handleChange, handleSubmit, errors, authError } = useForm();
 
   return (
     <Container maxWidth="xs">
@@ -68,11 +55,16 @@ export default function SignIn() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            value={values.email || ""}
+            onChange={handleChange}
+            error={!!errors.email}
+            helperText={errors.email}
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
+            placeholder="test@test.ru"
             label="Email"
             name="email"
             autoComplete="email"
@@ -86,6 +78,11 @@ export default function SignIn() {
             }}
           />
           <TextField
+            value={values.password || ""}
+            onChange={handleChange}
+            error={!!errors.password}
+            helperText={errors.password}
+            placeholder="test"
             variant="outlined"
             margin="normal"
             required
@@ -103,14 +100,14 @@ export default function SignIn() {
               },
             }}
           />
-
+          {authError && <FormHelperText error>{authError}</FormHelperText>}
           <Button
             type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={signIn}
+            onClick={handleSubmit}
           >
             Войти
           </Button>
@@ -123,15 +120,3 @@ export default function SignIn() {
   );
 }
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://dynamics.i-neti.ru/">
-        Neti
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}

@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
-import CallApi from "./api";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchProjects } from "../../redux/projects/projects.actions";
+import { getProjectsState } from "../../redux/projects/project.utils";
+import { Link } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Stats from "../UI/Stats";
 import {
   Container,
   AppBar,
@@ -11,10 +15,8 @@ import {
   ListItem,
   ListItemText,
   Divider,
-  Box,
 } from "@material-ui/core";
-import {  makeStyles } from "@material-ui/core/styles";
-
+import { makeStyles } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   overrides: {
@@ -27,49 +29,20 @@ const theme = createMuiTheme({
 });
 
 const useStyles = makeStyles({
-  rootBox: {
-    component: "div",
-    p: 1,
-    borderColor: (props) => props.borderColor,
-    border: 2,
-    borderRadius: 5,
-    fontWeight: 600,
-  },
   appBarColorPrimary: {
     backgroundColor: "#00adef",
   },
 });
 
-const defaultBoxProps = {
-    component: "div",
-    pl: 1.5,
-    pr: 1.5,
-    pt: 1,
-    pb: 1,
-    border: 2,
-    borderRadius: 5,
-    fontWeight: 600,
-    m: 1
-  };
-
 export default function Projects() {
   const classes = useStyles();
 
-  const [projects, setProjects] = useState([]);
-
-  const getProjects = async () => {
-    let response = await CallApi.get("/project");
-    if (response.success) {
-      console.log(response.data);
-      setProjects(response.data);
-    } else {
-      throw new Error(response.errors[0]);
-    }
-  };
+  const dispatch = useDispatch();
+  const projects = useSelector((store) => getProjectsState(store));
 
   useEffect(() => {
-    getProjects();
-  }, []);
+    dispatch(fetchProjects());
+  }, [dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -86,18 +59,26 @@ export default function Projects() {
               projects.map((project, index) => {
                 return (
                   <React.Fragment key={index}>
-                    <ListItem button component="li">
+                    <ListItem
+                      button
+                      component={Link}
+                      to={`project/${project.id}/project-structure/${project.root_structure_id}`}
+                    >
                       <ListItemText primary={project.title} />
-                      <Box borderColor="error.main" {...defaultBoxProps}>
-                        {project.notes_cnt_danger}
-                      </Box>
-                      <Box borderColor="#ffc107" {...defaultBoxProps}>
-                        {project.notes_cnt_warning}
-                      </Box>
-                      <Box borderColor="green" {...defaultBoxProps}>
-                        {project.notes_cnt_success}
-                      </Box>
+                      <Stats
+                        borderColor="red"
+                        text={project.notes_cnt_danger}
+                      />
+                      <Stats
+                        borderColor="#ffc107"
+                        text={project.notes_cnt_warning}
+                      />
+                      <Stats
+                        borderColor="green"
+                        text={project.notes_cnt_success}
+                      />
                     </ListItem>
+
                     <Divider variant="middle" component="li" />
                   </React.Fragment>
                 );
