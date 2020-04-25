@@ -1,1 +1,0 @@
-export const getProjectsState = store => store.projects 

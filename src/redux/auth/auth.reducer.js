@@ -14,3 +14,5 @@ const auth = (state = initialState, action) => {
 };
 
 export default auth;
+
+export const getAuthState = state => state.auth.isAuth 

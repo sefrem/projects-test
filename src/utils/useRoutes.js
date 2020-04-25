@@ -11,8 +11,10 @@ export const useRoutes = (isAuthenticated) => {
         {isAuthenticated ? <Redirect to="/projects" /> : <SignIn />}
       </Route>
       <Route path="/projects" component={Projects} />
-      <Route path="/project/:id/project-structure/:rootStructureId" component={Project} />
+      <Route
+        path="/project/:projectId/project-structure/:rootStructureId"
+        component={Project}
+      />
     </Switch>
   );
 };
-

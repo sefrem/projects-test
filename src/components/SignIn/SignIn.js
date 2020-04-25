@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   disabled: {},
 }));
 
-export default function SignIn() {
+const SignIn = () => {
   const classes = useStyles();
 
   const { values, handleChange, handleSubmit, errors, authError } = useForm();
@@ -120,3 +120,4 @@ export default function SignIn() {
   );
 }
 
+export default SignIn

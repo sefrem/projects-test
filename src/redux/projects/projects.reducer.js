@@ -1,12 +1,28 @@
-import { GET_PROJECTS } from './projects.types'
+import * as types from "./projects.types";
 
-const projects = (state = [], action) => {
-    switch(action.type) {
-        case GET_PROJECTS: 
-        return action.payload.slice()
-        default:
+const initialState = {
+  projects: [],
+  error: null,
+};
+
+const projects = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case types.FETCH_PROJECTS_SUCCESS:
+      return {
+        ...state,
+        projects: payload.slice(),
+      };
+    case types.FETCH_PROJECTS_ERROR:
+      return {
+        ...state,
+        error: payload.error,
+      };
+    case types.FETCH_PROJECTS_REQUEST:
+    default:
       return state;
-    }
-}
+  }
+};
 
-export default projects
+export default projects;
+
+export const getProjects = (state) => state.projects.projects;

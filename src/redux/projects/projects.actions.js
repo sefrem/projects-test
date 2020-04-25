@@ -1,19 +1,26 @@
-import { GET_PROJECTS } from "./projects.types";
+import * as types from "./projects.types";
 import CallApi from "../../api/api";
 
 export const fetchProjects = () => async (dispatch) => {
+  dispatch({ type: types.FETCH_PROJECTS_REQUEST });
   let response = await CallApi.get("/project");
   if (response.success) {
     dispatch(getProjects(response.data));
   } else {
-    throw new Error(response.errors[0]);
+    dispatch(getError(response.errors[0]));
   }
 };
 
- const getProjects = (payload) => {
+const getProjects = (payload) => {
   return {
-    type: GET_PROJECTS,
+    type: types.FETCH_PROJECTS_SUCCESS,
     payload,
   };
 };
 
+const getError = (payload) => {
+  return {
+    type: types.FETCH_PROJECTS_ERROR,
+    payload,
+  };
+};
