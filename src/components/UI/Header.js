@@ -1,6 +1,7 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Logout from '../Logout/Logout'
 
 const useStyles = makeStyles({
   appBarColorPrimary: {
@@ -16,6 +17,7 @@ const Header = ({ headerText, ...props }) => {
       <Toolbar>
         {children}
         <Typography variant="h5">{headerText}</Typography>
+        <Logout />
       </Toolbar>
     </AppBar>
   );

@@ -18,4 +18,5 @@ const loader = (state = {}, action) => {
 export default loader;
 
 export const isFetchingProjects = (state) => state.loader.FETCH_PROJECTS;
-export const isFetchingProjectStructure = (state) => state.loader.FETCH_PROJECT_STRUCTURE
+export const isFetchingProject = (state) => state.loader.FETCH_PROJECT;
+export const isFetchingStructure = (state) => state.loader.FETCH_STRUCTURE;
