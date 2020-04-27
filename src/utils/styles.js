@@ -10,8 +10,13 @@ export const theme = createMuiTheme({
       MuiCircularProgress: {
         root: {
           position: "absolute",
-          top: "50%",
+          top: "25%",
           left: "50%",
+        },
+      },
+      MuiBreadcrumbs: {
+        root: {
+          padding: '10px',
         },
       },
     },

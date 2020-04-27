@@ -1,5 +1,5 @@
-import { useState, useEffect, } from "react";
-import { useDispatch } from 'react-redux'
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import CallApi from "../api/api";
 import { updateAuth } from "../redux/auth/auth.actions";
 
@@ -36,7 +36,7 @@ const useForm = () => {
         if (auth.success) {
           let accessToken = await auth.data.accessToken;
           localStorage.setItem("accessToken", `${accessToken}`);
-           dispatch(updateAuth());
+          dispatch(updateAuth());
         } else {
           setAuthError(auth.errors[0]);
         }
@@ -45,7 +45,7 @@ const useForm = () => {
     }
   }, [values.email, values.password, isSubmitting, errors, dispatch]);
 
-  return  {
+  return {
     handleChange,
     handleSubmit,
     values,
@@ -54,10 +54,9 @@ const useForm = () => {
   };
 };
 
-
 export default useForm;
 
-function validate(values) {
+const validate = (values) => {
   let errors = {};
   if (!values.email || !emailValidation(values.email)) {
     errors.email = "Введите корректный email";
@@ -66,9 +65,9 @@ function validate(values) {
     errors.password = "Введите пароль";
   }
   return errors;
-}
+};
 
-export const emailValidation = (input) => {
+const emailValidation = (input) => {
   const emailValidationRegEx = new RegExp(
     "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
   );

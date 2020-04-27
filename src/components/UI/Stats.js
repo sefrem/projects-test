@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -13,14 +14,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Stats = (props) => {
-  const { borderColor, text, ...other } = props;
+const Stats = ({ text, ...props }) => {
   const classes = useStyles(props);
   return (
-    <Box className={classes.projectStats} {...other}>
+    <Box className={classes.projectStats} {...props}>
       {text}
     </Box>
   );
 };
 
 export default Stats;
+
+Stats.propTypes = {
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};

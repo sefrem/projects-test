@@ -1,24 +1,22 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
+import { Link } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginRight: theme.spacing(1),
-    "&:hover": {
-      cursor: "pointer",
-    },
-  },
-}));
-
-const BackArrow = ({ history, ...props }) => {
-  const classes = useStyles();
+const BackArrow = ({ link, ...props }) => {
   return (
-    <Box className={classes.root} onClick={() => history.goBack()}>
-      <ArrowBackIcon />
+    <Box {...props }>
+      <Link color="inherit" to={link} component={RouterLink}>
+        <ArrowBackIcon />
+      </Link>
     </Box>
   );
 };
 
 export default BackArrow;
+
+BackArrow.propTypes = {
+  link: PropTypes.string.isRequired,
+};

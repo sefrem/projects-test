@@ -10,7 +10,7 @@ async function fetchApi(url, options = {}) {
       throw response;
     }
   } catch (error) {
-    throw new Error(await error.json());
+    throw new Error(error);
   }
 }
 

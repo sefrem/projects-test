@@ -15,7 +15,7 @@ const projects = (state = initialState, { type, payload }) => {
     case types.FETCH_PROJECTS_ERROR:
       return {
         ...state,
-        error: payload.error,
+        error: payload
       };
     case types.FETCH_PROJECTS_REQUEST:
     default:
@@ -26,3 +26,4 @@ const projects = (state = initialState, { type, payload }) => {
 export default projects;
 
 export const getProjects = (state) => state.projects.projects;
+export const getProjectsError = (state) => state.projects.error;

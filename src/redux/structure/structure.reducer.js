@@ -14,7 +14,7 @@ const structure = (state = initialState, { type, payload }) => {
     case types.FETCH_STRUCTURE_ERROR:
       return {
         ...state,
-        error: payload.error,
+        error: payload,
       };
     case types.FETCH_STRUCTURE_REQUEST:
     default:
@@ -25,3 +25,4 @@ const structure = (state = initialState, { type, payload }) => {
 export default structure;
 
 export const getStructure = (state) => state.structure;
+export const getStructureError = state => state.structure.error

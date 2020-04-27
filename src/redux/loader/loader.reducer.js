@@ -7,7 +7,8 @@ const loader = (state = {}, action) => {
     return state;
   }
 
-  const [requestName, requestPrefix, requestState] = matches;
+  // eslint-disable-next-line no-unused-vars
+  const [requestName, requestPrefix, requestState] = matches; 
 
   return {
     ...state,
@@ -18,5 +19,4 @@ const loader = (state = {}, action) => {
 export default loader;
 
 export const isFetchingProjects = (state) => state.loader.FETCH_PROJECTS;
-export const isFetchingProject = (state) => state.loader.FETCH_PROJECT;
 export const isFetchingStructure = (state) => state.loader.FETCH_STRUCTURE;
