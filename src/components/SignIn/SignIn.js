@@ -118,6 +118,6 @@ const SignIn = () => {
       </Box>
     </Container>
   );
-}
+};
 
-export default SignIn
+export default SignIn;

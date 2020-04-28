@@ -57,5 +57,5 @@ const Search = ({ onChange, ...props }) => {
 export default Search;
 
 Search.propTypes = {
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };

@@ -12,6 +12,6 @@ const Copyright = () => {
       {"."}
     </Typography>
   );
-}
+};
 
-export default Copyright
+export default Copyright;

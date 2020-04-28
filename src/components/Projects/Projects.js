@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProjects } from "../../redux/projects/projects.actions";
-import { getProjects, getProjectsError } from "../../redux/projects/projects.reducer";
+import {
+  getProjects,
+  getProjectsError,
+} from "../../redux/projects/projects.reducer";
 import { isFetchingProjects } from "../../redux/loader/loader.reducer";
 import Header from "../UI/Header";
 import ProjectsPresentation from "./ProjectsPresentation/ProjectsPresentation";
@@ -32,6 +35,6 @@ const Projects = () => {
       </Paper>
     </>
   );
-}
+};
 
-export default Projects
+export default Projects;

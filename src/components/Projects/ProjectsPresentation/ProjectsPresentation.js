@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ListData from "../../UI/ListData";
 import { List } from "@material-ui/core";
 
-
 const ProjectsPresentation = ({ projects }) => {
   return (
     <List component="ul">

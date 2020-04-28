@@ -8,7 +8,7 @@ const loader = (state = {}, action) => {
   }
 
   // eslint-disable-next-line no-unused-vars
-  const [requestName, requestPrefix, requestState] = matches; 
+  const [requestName, requestPrefix, requestState] = matches;
 
   return {
     ...state,

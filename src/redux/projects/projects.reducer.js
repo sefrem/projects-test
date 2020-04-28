@@ -15,7 +15,7 @@ const projects = (state = initialState, { type, payload }) => {
     case types.FETCH_PROJECTS_ERROR:
       return {
         ...state,
-        error: payload
+        error: payload,
       };
     case types.FETCH_PROJECTS_REQUEST:
     default:

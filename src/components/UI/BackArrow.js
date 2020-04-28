@@ -7,7 +7,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 const BackArrow = ({ link, ...props }) => {
   return (
-    <Box {...props }>
+    <Box {...props}>
       <Link color="inherit" to={link} component={RouterLink}>
         <ArrowBackIcon />
       </Link>

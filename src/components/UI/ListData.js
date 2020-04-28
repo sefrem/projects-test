@@ -9,7 +9,7 @@ const ListData = ({ data, link, ...props }) => {
     <>
       <ListItem button component={Link} to={link} {...props}>
         <ListItemText primary={data.title} />
-        <Stats borderColor="red" text={data.notes_cnt_danger}  />
+        <Stats borderColor="red" text={data.notes_cnt_danger} />
         <Stats borderColor="#ffc107" text={data.notes_cnt_warning} />
         <Stats borderColor="green" text={data.notes_cnt_success} />
       </ListItem>

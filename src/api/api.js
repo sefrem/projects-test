@@ -1,4 +1,3 @@
-
 const API_URL = "https://cdsapi.netimob.com/api";
 
 async function fetchApi(url, options = {}) {
@@ -29,17 +28,12 @@ export default class CallApi {
   }
 
   static get(url) {
-    return fetchApi(
-      `${API_URL}${url}`,
-      {
-        mode: "cors",
-        headers: {
-          "Content-type": "application/json",
-          "Access-Token": `${localStorage.getItem("accessToken")}`,
-        },
-      }
-    );
+    return fetchApi(`${API_URL}${url}`, {
+      mode: "cors",
+      headers: {
+        "Content-type": "application/json",
+        "Access-Token": `${localStorage.getItem("accessToken")}`,
+      },
+    });
   }
 }
-
-

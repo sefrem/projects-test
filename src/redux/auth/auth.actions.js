@@ -1,8 +1,7 @@
-import { UPDATE_AUTH } from './auth.types'
+import { UPDATE_AUTH } from "./auth.types";
 
 export const updateAuth = () => {
-    return {
-        type: UPDATE_AUTH
-    }
-}
-
+  return {
+    type: UPDATE_AUTH,
+  };
+};

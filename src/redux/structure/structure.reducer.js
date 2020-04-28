@@ -25,4 +25,4 @@ const structure = (state = initialState, { type, payload }) => {
 export default structure;
 
 export const getStructure = (state) => state.structure;
-export const getStructureError = state => state.structure.error
+export const getStructureError = (state) => state.structure.error;
