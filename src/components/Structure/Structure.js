@@ -21,16 +21,17 @@ const Structure = () => {
   const isFetching = useSelector((state) => isFetchingStructure(state));
   const showSpinner = isFetching && !currentStructure;
 
-  const handleChange = (e) => {
+  const handleSearchInput = (e) => {
     setSearchTerm(e.target.value);
   };
-  let filterdStructure = cloneDeep(currentStructure);
 
-  if (filterdStructure) {
-    let filteredChildren = filterdStructure.children.filter((item) =>
+  let filteredStructure = cloneDeep(currentStructure);
+
+  if (filteredStructure) {
+    let filteredChildren = filteredStructure.children.filter((item) =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    filterdStructure.children = [...filteredChildren];
+    filteredStructure.children = [...filteredChildren];
   }
 
   useEffect(() => {
@@ -45,11 +46,11 @@ const Structure = () => {
       {showSpinner ? (
         <CircularProgress />
       ) : (
-        currentStructure && (
+        filteredStructure && (
           <StructurePresentation
-            structure={filterdStructure}
+            structure={filteredStructure}
             projectId={projectId}
-            handleChange={handleChange}
+            handleSearchInput={handleSearchInput}
           />
         )
       )}
